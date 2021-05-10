@@ -1,0 +1,102 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}Detalhes do produto{% endblock title %}
+
+{% block main %}
+<div class="breadcrumb">
+                    <!-- *BreadCrumb Starts here** -->
+                    <div class="container">
+                        <h2>Product <span>Detail</span></h2>
+                        <div class="user-summary">
+                            <div class="account-links">
+                                <a href="#">My Account</a>
+                                <a href="#">Checkout</a>
+                            </div>
+                            <div class="cart-count">
+                                <a href="#">Shopping Bag: 0 items</a>
+                                <a href="#">(R$0.00)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- *BreadCrumb Ends here** -->
+                <section id="primary" class="content-full-width">
+                    <!-- **Primary Starts Here** -->
+                    <div class="container">
+                        <div class="cart-wrapper">
+                            <!-- *cart-wrapper starts here** -->
+                            <div class="dt-sc-three-fifth column first">
+                                <div class="cart-thumb">
+                                    <a href="#">
+                                        <img src={% static 'images/fineart-1.jpg' %} alt="" title="Acrylic">
+                                    </a>
+                                </div>
+                                
+
+                            </div>
+                            <div class="dt-sc-two-fifth column">
+                                <!-- Author Detail Starts Here -->
+                                <div class="post-author-details">
+                                    
+                                    <div class="author-title">
+                                        <h5><a href="#">Fineart 1</a></h5>
+                                        <span>Lorem ipsum dolor</span>
+                                        <div class="woocommerce-product-rating">
+                                            <div title="Rated 4.40 out of 5" class="star-rating"><span
+                                                    style="width:85%"></span></div>
+                                            <a href="#">( 4 customer reviews )</a>
+                                        </div>
+                                    </div>
+                                    <div class="author-desc">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia dicta commodi
+                                            dolore doloribus distinctio earum. Amet quos omnis voluptas ducimus
+                                            molestiae unde necessitatibus nihil, voluptatum vitae voluptatibus,
+                                            voluptatem explicabo? Nulla.</p>
+                                    </div>
+                                </div>
+                                <!-- Author Detail Ends Here -->
+                                <ul class="cart-thumb-categories">
+                                    <!-- cart-thumb-categories starts Here -->
+                                    <li>
+                                        <a href="#" class="product"><img
+                                                src="images/fineart-1.jpg" alt="" title=""></a>
+                                        <div class="category-details">
+                                            <h6><a href="#"> Impressão </a> </h6>
+                                            <span> R$25 </span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="product"><img
+                                                src="images/fineart-1.jpg" alt="" title=""></a>
+                                        <div class="category-details">
+                                            <h6><a href="#"> Foto </a> </h6>
+                                            <span> R$30 </span>
+                                        </div>
+                                    </li>
+                                    <li class="last">
+                                        <a href="#" class="product"><img
+                                                src="images/fineart-1.jpg" alt="" title=""></a>
+                                        <div class="category-details">
+                                            <h6><a href="#"> Pintura a óleo </a> </h6>
+                                            <span> R$28 </span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="product"><img
+                                                src="images/fineart-1.jpg" alt="" title=""></a>
+                                        <div class="category-details">
+                                            <h6><a href="#"> Acrílico </a> </h6>
+                                            <span> R$45 </span>
+                                        </div>
+                                    </li>
+                                    
+                                    
+                                </ul><!-- cart-thumb-categories Ends Here -->
+
+                                <a class="dt-sc-button medium type2 with-icon" href="shop-cart.html"><i class="fa fa-cart-plus"> </i> <span> Adicionar ao carrinho </span> </a>
+                                
+                            </div>
+                        </div><!-- *cart-wrapper Ends here** -->
+                    </div>
+                </section><!-- **Primary Ends Here** -->
+{% endblock main %}

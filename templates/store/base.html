@@ -5,7 +5,7 @@
 <!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en-gb" class="no-js">
+<html lang="pt-br" class="no-js">
 <!--<![endif]-->
 
 <head>
@@ -36,6 +36,7 @@
     <link rel="stylesheet" href={% static 'css/responsive.css' %} type="text/css" media="all" />
 
     <link id="light-dark-css" href={% static 'dark/dark.css' %} rel="stylesheet" media="all" />
+    {% block custom_css %}{% endblock custom_css %}
 
     <!-- **Font Awesome** -->
     <link rel="stylesheet" href={% static 'css/font-awesome.min.css' %} type="text/css" />
@@ -57,7 +58,7 @@
                 <!-- **header-wrapper Starts** -->
                 <div id="header" class="header">
                     <div class="container menu-container">
-                        <a class="logo" href="index.html"><img alt="Logo" src="https://via.placeholder.com/200x55"></a>
+                        <a class="logo" href={% url 'store:home' %}><img alt="Logo" src="https://via.placeholder.com/200x55"></a>
 
                         <a href="#" class="menu-trigger">
                             <span></span>
@@ -75,7 +76,7 @@
                     </div>
                     <ul class="menu type1">
                         <!-- Menu Starts -->
-                        <li class="current_page_item menu-item-simple-parent"><a href="index.html">Início<span
+                        <li class="current_page_item menu-item-simple-parent"><a href={% url 'store:home' %}>Início<span
                                     class="fa fa-home"></span></a>
 
                             <a class="dt-menu-expand">+</a>
@@ -84,7 +85,7 @@
                             <a href="#about">Kambô <span class="fa fa-user-secret"></span></a>
                         </li>
 
-                        <li class="menu-item-simple-parent"><a href="shop.html">Loja<span
+                        <li class="menu-item-simple-parent"><a href={% url 'store:products_list' %}>Loja<span
                                     class="fa fa-cart-plus"></span></a>
 
                         </li>
@@ -147,6 +148,8 @@
     <script type="text/javascript" src={% static 'js/jquery.bxslider.min.js' %}></script>
 
     <script src={% static 'js/custom.js' %}></script>
+
+    {% block custom_js %}{% endblock custom_js %}
 </body>
 
 </html>
