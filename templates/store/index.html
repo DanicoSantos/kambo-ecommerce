@@ -76,40 +76,36 @@
                             <a data-filter="*" href="#" title="09"
                                 class="dt-sc-tooltip-top active-sort type1 dt-sc-button animate" data-animation="fadeIn"
                                 data-delay="100">Todos</a>
-                            <a data-filter=".nature" href="#" title="06"
+                           {% for category in categories %}
+                            <a data-filter=".{{ category.id }}" href="#" title="06"
                                 class="dt-sc-tooltip-top type1 dt-sc-button animate" data-animation="fadeIn"
-                                data-delay="200">Tema 1</a>
-                            <a data-filter=".people" href="#" title="06"
-                                class="dt-sc-tooltip-top type1 dt-sc-button animate" data-animation="fadeIn"
-                                data-delay="300">Tema 2</a>
-                            <a data-filter=".street" href="#" title="05"
-                                class="dt-sc-tooltip-top type1 dt-sc-button animate" data-animation="fadeIn"
-                                data-delay="400">Tema 3</a>
-                            <a data-filter=".still-life" href="#" title="08"
-                                class="dt-sc-tooltip-top type1 dt-sc-button animate" data-animation="fadeIn"
-                                data-delay="500">Tema 4</a>
+                                data-delay="200">{{ category.name }}</a>
+                           {% endfor %}
+                           
                         </div>
                         <div class="portfolio-fullwidth">
                             <div class="portfolio-grid">
                                 <div class="dt-sc-portfolio-container isotope">
                                     <!-- **dt-sc-portfolio-container Starts Here** -->
-                                    <div class="portfolio nature still-life dt-sc-one-fourth">
+                                    {% for product in products %}
+                                    <div class="portfolio {{ product.category_id }} still-life dt-sc-one-fourth">
                                         <figure>
-                                            <img src={% static 'images/img-1.jpg' %} alt="" title="">
+                                            <img src="{{ product.picture.url }}" alt="" title="">
                                             <figcaption>
                                                 <div class="portfolio-detail">
                                                     <div class="views">
                                                         <a class="fa fa-camera-retro" data-gal="prettyPhoto[gallery]"
-                                                            href={% static 'images/img-1.jpg' %}></a><span>3</span>
+                                                            href="{{ product.picture.url}}"></a><span>3</span>
                                                     </div>
                                                     <div class="portfolio-title">
-                                                        <h5><a href="gallery-detail.html">Arte 1</a></h5>
-                                                        <p>Lorem ipsum dolor sit amet.</p>
+                                                        <h5>{{ product.title }}</h5>
+                                                        <p>{{ product.description }}</p>
                                                     </div>
                                                 </div>
                                             </figcaption>
                                         </figure>
                                     </div>
+                                    {% endfor %}
                                     
                                 </div><!-- **dt-sc-portfolio-container Ends Here** -->
                             </div>

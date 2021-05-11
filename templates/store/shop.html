@@ -28,6 +28,7 @@
                 </div>
 				<div class="fullwidth-section shop-grid"><!-- Full-width section Starts Here -->
                     <ul class="products isotope">
+                        {% for product in products %}
                         <li class="product-wrapper dt-sc-one-fifth"> <!-- **product-wrapper - Starts** -->
                             <!-- **product-container - Starts** -->   
                             <div class="product-container">
@@ -35,15 +36,17 @@
                                 <!-- **product-title - Starts** -->
                                 <div class="product-title"> 
                                     
-                                    <p>You don't take a photograph, Just make it</p>
+                                    <p>{{ product.description }}</p>
                                 </div> <!-- **product-title - Ends** -->
                             </div> <!-- **product-container - Ends** --> 
                             <!-- **product-details - Starts** --> 
                             <div class="product-details"> 
-                                <h5> <a href={% url 'store:product_details' %}> Fineart 1 </a> </h5>
-                                <span class="amount"> R$25 </span> 
+                                <h5> <a href={% url 'store:product_details' %}> {{ product.title}} </a> </h5>
+                                <span class="amount"> R$ {{ product.price }} </span> 
                             </div> <!-- **product-details - Ends** --> 
-                        </li><!-- **product-wrapper - Ends** -->                                          
+                        </li><!-- **product-wrapper - Ends** -->  
+                        {% endfor %}
+
                     </ul>
                     <div class="container">
                         <div class="dt-sc-post-pagination">
