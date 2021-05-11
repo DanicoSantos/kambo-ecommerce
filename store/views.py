@@ -9,7 +9,13 @@ def home_page(request):
     return render(request, 'store/index.html', context)
 
 
-def products_list(request):
+def categories(request):
+    return {
+        'categories': Category.objects.all()
+    }
+
+
+def shop(request):
     products = Product.objects.all()
     context = dict(products=products)
     return render(request, 'store/shop.html', context)
