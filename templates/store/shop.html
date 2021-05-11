@@ -32,7 +32,8 @@
                         <li class="product-wrapper dt-sc-one-fifth"> <!-- **product-wrapper - Starts** -->
                             <!-- **product-container - Starts** -->   
                             <div class="product-container">
-                                <a href={% url 'store:product_details' %}><div class="product-thumb"> <img src={% static 'images/fineart-1.jpg' %} alt="image"/> </div> </a>
+                                <a href="{{ product.get_absolute_url }}"><div class="product-thumb">
+                                 <img src="{{ product.picture.url }}" alt="image"/> </div> </a>
                                 <!-- **product-title - Starts** -->
                                 <div class="product-title"> 
                                     
@@ -41,7 +42,7 @@
                             </div> <!-- **product-container - Ends** --> 
                             <!-- **product-details - Starts** --> 
                             <div class="product-details"> 
-                                <h5> <a href={% url 'store:product_details' %}> {{ product.title}} </a> </h5>
+                                <h5> <a href="{{ product.get_absolute_url }}"> {{ product.title}} </a> </h5>
                                 <span class="amount"> R$ {{ product.price }} </span> 
                             </div> <!-- **product-details - Ends** --> 
                         </li><!-- **product-wrapper - Ends** -->  

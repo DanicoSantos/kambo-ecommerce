@@ -1,4 +1,4 @@
-{% extends './base.html' %}
+{% extends '../base.html' %}
 {% load static %}
 
 {% block title %}Detalhes do produto{% endblock title %}
@@ -28,7 +28,7 @@
                             <div class="dt-sc-three-fifth column first">
                                 <div class="cart-thumb">
                                     <a href="#">
-                                        <img src={% static 'images/fineart-1.jpg' %} alt="" title="Acrylic">
+                                        <img src={{ product.picture.url }} alt="" title="{{ product.title }}">
                                     </a>
                                 </div>
                                 
@@ -39,19 +39,11 @@
                                 <div class="post-author-details">
                                     
                                     <div class="author-title">
-                                        <h5><a href="#">Fineart 1</a></h5>
-                                        <span>Lorem ipsum dolor</span>
-                                        <div class="woocommerce-product-rating">
-                                            <div title="Rated 4.40 out of 5" class="star-rating"><span
-                                                    style="width:85%"></span></div>
-                                            <a href="#">( 4 customer reviews )</a>
-                                        </div>
+                                        <h5><a href="#">{{ product.title }}</a></h5>
+                                        
                                     </div>
                                     <div class="author-desc">
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia dicta commodi
-                                            dolore doloribus distinctio earum. Amet quos omnis voluptas ducimus
-                                            molestiae unde necessitatibus nihil, voluptatum vitae voluptatibus,
-                                            voluptatem explicabo? Nulla.</p>
+                                        <p>{{ product.description }}</p>
                                     </div>
                                 </div>
                                 <!-- Author Detail Ends Here -->
