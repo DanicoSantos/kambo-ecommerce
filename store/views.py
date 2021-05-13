@@ -6,7 +6,7 @@ from .models import Category, Product
 def home_page(request):
     products = Product.products.all()
     context = dict(products=products)
-    return render(request, 'store/index.html', context)
+    return render(request, 'index.html', context)
 
 
 def categories(request):
@@ -25,7 +25,3 @@ def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
     context = dict(product=product)
     return render(request, 'store/products/detail.html', context)
-
-
-def shop_cart(request):
-    return render(request, 'store/shop-cart.html')

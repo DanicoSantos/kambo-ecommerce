@@ -1,375 +1,351 @@
-{% extends './base.html' %}
+{% extends './store-base.html' %}
 {% load static %}
 
 {% block title %}Checkout{% endblock title %}
 
 {% block main %}
 
-<div class="breadcrumb">
-                    <!-- *BreadCrumb Starts here** -->
-                    <div class="container">
-                        <h2>Shop <span>Checkout</span></h2>
-                        <div class="user-summary">
-                            <div class="account-links">
-                                <a href="#">My Account</a>
-                                <a href="#">Checkout</a>
-                            </div>
-                            <div class="cart-count">
-                                <a href="#">Shopping Bag: 0 items</a>
-                                <a href="#">($0.00)</a>
-                            </div>
+<section id="primary" class="content-full-width">
+    <div class="container">
+        <!-- **woocommerce - Starts** -->
+        <div class="woocommerce">
+
+            <!-- **checkout - Starts** -->
+            <form name="checkout" method="post" class="checkout" action="#">
+                <!-- **col2-set - Starts** -->
+                <div class="col2-set" id="customer_details">
+                    <!-- **col-1 - Starts** -->
+                    <div class="col-1">
+                        <!-- **woocommerce-billing-fields - Starts** -->
+                        <div class="woocommerce-billing-fields">
+
+                            <h3>Endereço de Cobrança</h3>
+
+
+
+                            <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
+                                id="billing_country_field">
+
+                                <p class="form-row form-row-first validate-required" id="billing_first_name_field">
+                                    <label for="billing_first_name" class="">Nome *</label>
+                                    <input type="text" class="input-text " name="billing_first_name"
+                                        id="billing_first_name" placeholder="" value="" required="" />
+                                </p>
+
+                                <p class="form-row form-row-last validate-required" id="billing_last_name_field">
+                                    <label for="billing_last_name" class="">Sobrenome *</label>
+                                    <input type="text" class="input-text " name="billing_last_name"
+                                        id="billing_last_name" placeholder="" value="" required="" />
+                                </p>
+                                <div class="clear"></div>
+
+
+
+                                <p class="form-row form-row-wide address-field validate-required"
+                                    id="billing_address_1_field">
+                                    <label for="billing_address_1" class="">Endereço</label>
+                                    <input type="text" class="input-text " name="billing_address_1"
+                                        id="billing_address_1" placeholder="Street Name" value="" />
+                                </p>
+
+                                <p class="form-row form-row-wide address-field" id="billing_address_2_field">
+                                    <label for="billing_address_2" class="">Complemento</label>
+                                    <input type="text" class="input-text " name="billing_address_2"
+                                        id="billing_address_2" placeholder="Apartment Name, No.. etc." value="" />
+                                </p>
+
+                                <div class="form-row form-row-wide address-field validate-required">
+                                    <label>Estado </label>
+                                    <div class="selection-box">
+                                        <select name="billing_city" class="shop-dropdown">
+                                            <option value="-1" selected>-- Select State --</option>
+                                        </select>
+                                    </div>
+                                    <noscript><input type="submit" name="woocommerce_checkout_update_totals"
+                                            value="Update country" /></noscript>
+                                </div>
+
+                                <p class="form-row form-row-first address-field validate-state"
+                                    id="billing_state_field">
+                                    <label>Cidade *</label>
+                                    <input type="text" class="input-text " value="" placeholder="Town / City"
+                                        name="billing_state" />
+                                </p>
+
+                                <p class="form-row form-row-last address-field validate-required validate-postcode"
+                                    id="billing_postcode_field">
+                                    <label for="billing_postcode" class="">CEP *</label>
+                                    <input type="text" class="input-text " name="billing_postcode" id="billing_postcode"
+                                        placeholder="Postcode / Zip" value="" />
+                                </p>
+                                <div class="clear"></div>
+
+                                <p class="form-row form-row-first validate-required validate-email"
+                                    id="billing_email_field">
+                                    <label for="billing_email" class="">Email *</label>
+                                    <input type="text" class="input-text " name="billing_email" id="billing_email"
+                                        placeholder="Enter email" value="" />
+                                </p>
+
+                                <p class="form-row form-row-last validate-required validate-phone"
+                                    id="billing_phone_field">
+                                    <label for="billing_phone" class="">Fone * </label>
+                                    <input type="text" class="input-text " name="billing_phone" id="billing_phone"
+                                        placeholder="Enter Phone" value="" />
+                                </p>
+                                <div class="clear"></div>
+
+
+                        </div> <!-- **woocommerce-billing-fields - Ends** -->
+                    </div> <!-- **col-1 - Ends** -->
+                    <!-- **col-2 - Starts** -->
+                    <div class="col-2">
+                        <!-- **woocommerce-shipping-fields - Starts** -->
+                        <div class="woocommerce-shipping-fields">
+                            <h3>Endereço de entrega</h3>
+                            <p id="ship-to-different-address">
+                                <input id="ship-to-different-address-checkbox" class="input-checkbox" checked='checked'
+                                    type="checkbox" name="ship_to_different_address" value="1" />
+                                <label for="ship-to-different-address-checkbox" class="checkbox"><span></span>Entregar
+                                    no endereço de
+                                    cobrança</label>
+
+                            </p>
+                            <!-- **shipping-address - Starts** -->
+                            <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
+                                id="billing_country_field">
+
+                                <p class="form-row form-row-first validate-required" id="billing_first_name_field">
+                                    <label for="billing_first_name" class="">Nome *</label>
+                                    <input type="text" class="input-text " name="billing_first_name"
+                                        id="billing_first_name" placeholder="" value="" required="" />
+                                </p>
+
+                                <p class="form-row form-row-last validate-required" id="billing_last_name_field">
+                                    <label for="billing_last_name" class="">Sobrenome *</label>
+                                    <input type="text" class="input-text " name="billing_last_name"
+                                        id="billing_last_name" placeholder="" value="" required="" />
+                                </p>
+                                <div class="clear"></div>
+
+
+
+                                <p class="form-row form-row-wide address-field validate-required"
+                                    id="billing_address_1_field">
+                                    <label for="billing_address_1" class="">Endereço</label>
+                                    <input type="text" class="input-text " name="billing_address_1"
+                                        id="billing_address_1" placeholder="Street Name" value="" />
+                                </p>
+
+                                <p class="form-row form-row-wide address-field" id="billing_address_2_field">
+                                    <label for="billing_address_2" class="">Complemento</label>
+                                    <input type="text" class="input-text " name="billing_address_2"
+                                        id="billing_address_2" placeholder="Apartment Name, No.. etc." value="" />
+                                </p>
+
+                                <div class="form-row form-row-wide address-field validate-required">
+                                    <label>Estado </label>
+                                    <div class="selection-box">
+                                        <select name="billing_city" class="shop-dropdown">
+                                            <option value="-1" selected>-- Select State --</option>
+                                        </select>
+                                    </div>
+                                    <noscript><input type="submit" name="woocommerce_checkout_update_totals"
+                                            value="Update country" /></noscript>
+                                </div>
+
+                                <p class="form-row form-row-first address-field validate-state"
+                                    id="billing_state_field">
+                                    <label>Cidade *</label>
+                                    <input type="text" class="input-text " value="" placeholder="Town / City"
+                                        name="billing_state" />
+                                </p>
+
+                                <p class="form-row form-row-last address-field validate-required validate-postcode"
+                                    id="billing_postcode_field">
+                                    <label for="billing_postcode" class="">CEP *</label>
+                                    <input type="text" class="input-text " name="billing_postcode" id="billing_postcode"
+                                        placeholder="Postcode / Zip" value="" />
+                                </p>
+                                <div class="clear"></div>
+
+                                <p class="form-row form-row-first validate-required validate-email"
+                                    id="billing_email_field">
+                                    <label for="billing_email" class="">Email *</label>
+                                    <input type="text" class="input-text " name="billing_email" id="billing_email"
+                                        placeholder="Enter email" value="" />
+                                </p>
+
+                                <p class="form-row form-row-last validate-required validate-phone"
+                                    id="billing_phone_field">
+                                    <label for="billing_phone" class="">Fone * </label>
+                                    <input type="text" class="input-text " name="billing_phone" id="billing_phone"
+                                        placeholder="Enter Phone" value="" />
+                                </p>
+                                <div class="clear"></div>
+                                <!-- **shipping_address - Ends** -->
+
+                                <p class="form-row notes" id="order_comments_field"><label for="order_comments"
+                                        class="">Optional Message</label><textarea name="order_comments"
+                                        class="input-text " id="order_comments"
+                                        placeholder="Notes about your order, e.g. special notes for delivery." rows="2"
+                                        cols="5"></textarea></p>
+
+                        </div> <!-- **woocommerce-shipping-fields - Ends** -->
+
+                    </div> <!-- **col-2 - Ends** -->
+
+                </div> <!-- **col2-set - Ends** -->
+
+                <div class="dt-sc-margin50"></div>
+                <h3 id="order_review_heading">Order Review &amp; Payment</h3>
+                <div id="order_review">
+                    <table class="shop_table cart">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail">Arte</th>
+                                <th class="product-name">Produto</th>
+                                <th class="product-price">Preço</th>
+                                <th class="product-quantity">Quantidade</th>
+                                <th class="product-subtotal">Total</th>
+                                <th class="product-remove">Remover</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_table_item">
+                                <!-- The thumbnail -->
+                                <td class="product-thumbnail">
+                                    <a href="shop-detail.html"><img src="images/fineart-1.jpg"
+                                            style="width: 100px; height: 100px;"
+                                            class="attachment-shop_thumbnail wp-post-image" alt="T_7_front" /></a>
+                                </td>
+
+                                <!-- Product Name -->
+                                <td class="product-name">
+                                    <h6><a href="shop-detail.html">Fineart 1</a></h6>
+                                </td>
+
+                                <!-- Product price -->
+                                <td class="product-price">
+                                    <span class="amount">R$ 150</span>
+                                </td>
+
+                                <!-- Quantity inputs -->
+                                <td class="product-quantity">
+                                    <div class="quantity">
+                                        <input type="button" class="minus" value="-" />
+                                        <input type="number" name="quantity" step="1" value="1" min="1" title="Qty"
+                                            class="input-text qty text" />
+                                        <input type="button" class="plus" value="+" />
+                                    </div>
+                                </td>
+
+                                <!-- Product subtotal -->
+                                <td class="product-subtotal">
+                                    <span class="amount">R$ 150</span>
+                                </td>
+
+                                <!-- Remove from cart link -->
+                                <td class="product-remove">
+                                    <a href="#" class="remove" title="Remove this item">&times;</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <!-- **cart-collaterals - Starts** -->
+                    <div class="cart-collaterals">
+                        <div class="coupon">
+                            <h3>frete</h3>
+                            <form action="#" method="post">
+                                <label for="coupon_code">Calcular frete</label>
+                                <input name="coupon_code" class="input-text" id="coupon_code" value=""
+                                    placeholder="CEP" />
+                                <input type="submit" value="Calcular" name="calculate_shipping" class="button">
+                            </form>
                         </div>
-                    </div>
-                </div><!-- *BreadCrumb Ends here** -->
-                <section id="primary" class="content-full-width">
-                    <div class="container">
-                        <!-- **woocommerce - Starts** -->
-                        <div class="woocommerce">
+                        <div class="cart_totals">
+                            <h3>Total no carrinho</h3>
+                            <table>
+                                <tbody>
 
-                            <!-- **checkout - Starts** -->
-                            <form name="checkout" method="post" class="checkout" action="#">
-                                <!-- **col2-set - Starts** -->
-                                <div class="col2-set" id="customer_details">
-                                    <!-- **col-1 - Starts** -->
-                                    <div class="col-1">
-                                        <!-- **woocommerce-billing-fields - Starts** -->
-                                        <div class="woocommerce-billing-fields">
+                                    <tr class="cart-subtotal">
+                                        <th>Subtotal</th>
+                                        <td><span class="amount">R$ 150</span></span></td>
+                                    </tr>
 
-                                            <h3>Endereço de Cobrança</h3>
+                                    <tr class="shipping">
+                                        <th>Frete</th>
+                                        <td>R$ 25<input type="hidden" name="shipping_method" id="shipping_method"
+                                                value="free_shipping" /></td>
+                                    </tr>
 
+                                    <tr class="total">
+                                        <th>Total do pedido</th>
+                                        <td><strong><span class="amount">R$ 175</span></span></strong></td>
+                                    </tr>
 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- **cart-collaterals - Ends** -->
+                    <!-- **payment - Starts** -->
+                    <div id="payment">
+                        <ul class="payment_methods methods">
+                            <li class="payment_method_bacs">
+                                <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method"
+                                    value="bacs" checked='checked' data-order_button_text="" />
+                                <label for="payment_method_bacs"><span></span>Pix
+                                </label>
+                                <div class="payment_box payment_method_bacs">
+                                    <p>Make your payment directly into our bank account. Please use your
+                                        Order ID as the payment reference. Your order won&#8217;t be
+                                        shipped until the funds have cleared in our account.</p>
+                                </div>
+                            </li>
+                            <li class="payment_method_cheque">
+                                <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method"
+                                    value="cheque" data-order_button_text="" />
+                                <label for="payment_method_cheque"><span></span>Cartão de crédito </label>
+                                <div class="payment_box payment_method_cheque" style="display:none;">
+                                    <p>Please send your cheque to Store Name, Store Street, Store Town,
+                                        Store State / County, Store Postcode.</p>
+                                </div>
+                            </li>
+                            <li class="payment_method_paypal">
+                                <input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method"
+                                    value="paypal" data-order_button_text="Proceed to PayPal" />
+                                <label for="payment_method_paypal"><span></span>PayPal <img src="images/paypal.png"
+                                        alt="PayPal" /></label>
+                                <div class="payment_box payment_method_paypal" style="display:none;">
+                                    <p>Pay via PayPal; you can pay with your credit card if you
+                                        don&#8217;t have a PayPal account</p>
+                                </div>
+                            </li>
+                        </ul>
 
-                                            <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
-                                                id="billing_country_field">
+                        <div class="form-row place-order">
 
-                                            <p class="form-row form-row-first validate-required"
-                                                id="billing_first_name_field">
-                                                <label for="billing_first_name" class="">Nome *</label>
-                                                <input type="text" class="input-text " name="billing_first_name"
-                                                    id="billing_first_name" placeholder="" value="" required="" />
-                                            </p>
+                            <noscript>Since your browser does not support JavaScript, or it is disabled,
+                                please ensure you click the <em>Update Totals</em> button before placing
+                                your order. You may be charged more than the amount stated above if you
+                                fail to do so.<br /><input type="submit" class="button alt"
+                                    name="woocommerce_checkout_update_totals" value="Update totals" /></noscript>
+                            <input type="hidden" name="_wpnonce" value="127d0e67e3" /><input type="hidden"
+                                name="_wp_http_referer" value="" />
+                            <input type="submit" class="button alt" name="woocommerce_checkout_place_order"
+                                id="place_order" value="Place order" data-value="Finalizar pedido" />
 
-                                            <p class="form-row form-row-last validate-required"
-                                                id="billing_last_name_field">
-                                                <label for="billing_last_name" class="">Sobrenome *</label>
-                                                <input type="text" class="input-text " name="billing_last_name"
-                                                    id="billing_last_name" placeholder="" value="" required="" />
-                                            </p>
-                                            <div class="clear"></div>
+                        </div>
 
+                        <div class="clear"></div>
 
-
-                                            <p class="form-row form-row-wide address-field validate-required"
-                                                id="billing_address_1_field">
-                                                <label for="billing_address_1" class="">Endereço</label>
-                                                <input type="text" class="input-text " name="billing_address_1"
-                                                    id="billing_address_1" placeholder="Street Name" value="" />
-                                            </p>
-
-                                            <p class="form-row form-row-wide address-field"
-                                                id="billing_address_2_field">
-                                                <label for="billing_address_2" class="">Complemento</label>
-                                                <input type="text" class="input-text " name="billing_address_2"
-                                                    id="billing_address_2" placeholder="Apartment Name, No.. etc."
-                                                    value="" />
-                                            </p>
-
-                                            <div class="form-row form-row-wide address-field validate-required">
-                                                <label>Estado </label>
-                                                <div class="selection-box">
-                                                    <select name="billing_city" class="shop-dropdown">
-                                                        <option value="-1" selected>-- Select State --</option>                            
-                                                    </select>
-                                                </div>
-                                                <noscript><input type="submit" name="woocommerce_checkout_update_totals"
-                                                        value="Update country" /></noscript>
-                                            </div>
-
-                                            <p class="form-row form-row-first address-field validate-state"
-                                                id="billing_state_field">
-                                                <label>Cidade *</label>
-                                                <input type="text" class="input-text " value=""
-                                                    placeholder="Town / City" name="billing_state" />
-                                            </p>
-
-                                            <p class="form-row form-row-last address-field validate-required validate-postcode"
-                                                id="billing_postcode_field">
-                                                <label for="billing_postcode" class="">CEP *</label>
-                                                <input type="text" class="input-text " name="billing_postcode"
-                                                    id="billing_postcode" placeholder="Postcode / Zip" value="" />
-                                            </p>
-                                            <div class="clear"></div>
-
-                                            <p class="form-row form-row-first validate-required validate-email"
-                                                id="billing_email_field">
-                                                <label for="billing_email" class="">Email *</label>
-                                                <input type="text" class="input-text " name="billing_email"
-                                                    id="billing_email" placeholder="Enter email" value="" />
-                                            </p>
-
-                                            <p class="form-row form-row-last validate-required validate-phone"
-                                                id="billing_phone_field">
-                                                <label for="billing_phone" class="">Fone * </label>
-                                                <input type="text" class="input-text " name="billing_phone"
-                                                    id="billing_phone" placeholder="Enter Phone" value="" />
-                                            </p>
-                                            <div class="clear"></div>
-
-
-                                        </div> <!-- **woocommerce-billing-fields - Ends** -->
-                                    </div> <!-- **col-1 - Ends** -->
-                                    <!-- **col-2 - Starts** -->
-                                    <div class="col-2">
-                                        <!-- **woocommerce-shipping-fields - Starts** -->
-                                        <div class="woocommerce-shipping-fields">
-                                            <h3>Endereço de entrega</h3>
-                                            <p id="ship-to-different-address">
-                                                <input id="ship-to-different-address-checkbox" class="input-checkbox"
-                                                    checked='checked' type="checkbox" name="ship_to_different_address"
-                                                    value="1" />
-                                                <label for="ship-to-different-address-checkbox"
-                                                    class="checkbox"><span></span>Entregar no endereço de
-                                                    cobrança</label>
-
-                                            </p>
-                                            <!-- **shipping-address - Starts** -->
-                                            <p class="form-row form-row-wide address-field update_totals_on_change validate-required"
-                                                id="billing_country_field">
-
-                                            <p class="form-row form-row-first validate-required"
-                                                id="billing_first_name_field">
-                                                <label for="billing_first_name" class="">Nome *</label>
-                                                <input type="text" class="input-text " name="billing_first_name"
-                                                    id="billing_first_name" placeholder="" value="" required="" />
-                                            </p>
-
-                                            <p class="form-row form-row-last validate-required"
-                                                id="billing_last_name_field">
-                                                <label for="billing_last_name" class="">Sobrenome *</label>
-                                                <input type="text" class="input-text " name="billing_last_name"
-                                                    id="billing_last_name" placeholder="" value="" required="" />
-                                            </p>
-                                            <div class="clear"></div>
-
-
-
-                                            <p class="form-row form-row-wide address-field validate-required"
-                                                id="billing_address_1_field">
-                                                <label for="billing_address_1" class="">Endereço</label>
-                                                <input type="text" class="input-text " name="billing_address_1"
-                                                    id="billing_address_1" placeholder="Street Name" value="" />
-                                            </p>
-
-                                            <p class="form-row form-row-wide address-field"
-                                                id="billing_address_2_field">
-                                                <label for="billing_address_2" class="">Complemento</label>
-                                                <input type="text" class="input-text " name="billing_address_2"
-                                                    id="billing_address_2" placeholder="Apartment Name, No.. etc."
-                                                    value="" />
-                                            </p>
-
-                                            <div class="form-row form-row-wide address-field validate-required">
-                                                <label>Estado </label>
-                                                <div class="selection-box">
-                                                    <select name="billing_city" class="shop-dropdown">
-                                                        <option value="-1" selected>-- Select State --</option>                            
-                                                    </select>
-                                                </div>
-                                                <noscript><input type="submit" name="woocommerce_checkout_update_totals"
-                                                        value="Update country" /></noscript>
-                                            </div>
-
-                                            <p class="form-row form-row-first address-field validate-state"
-                                                id="billing_state_field">
-                                                <label>Cidade *</label>
-                                                <input type="text" class="input-text " value=""
-                                                    placeholder="Town / City" name="billing_state" />
-                                            </p>
-
-                                            <p class="form-row form-row-last address-field validate-required validate-postcode"
-                                                id="billing_postcode_field">
-                                                <label for="billing_postcode" class="">CEP *</label>
-                                                <input type="text" class="input-text " name="billing_postcode"
-                                                    id="billing_postcode" placeholder="Postcode / Zip" value="" />
-                                            </p>
-                                            <div class="clear"></div>
-
-                                            <p class="form-row form-row-first validate-required validate-email"
-                                                id="billing_email_field">
-                                                <label for="billing_email" class="">Email *</label>
-                                                <input type="text" class="input-text " name="billing_email"
-                                                    id="billing_email" placeholder="Enter email" value="" />
-                                            </p>
-
-                                            <p class="form-row form-row-last validate-required validate-phone"
-                                                id="billing_phone_field">
-                                                <label for="billing_phone" class="">Fone * </label>
-                                                <input type="text" class="input-text " name="billing_phone"
-                                                    id="billing_phone" placeholder="Enter Phone" value="" />
-                                            </p>
-                                            <div class="clear"></div>
-                                            <!-- **shipping_address - Ends** -->
-
-                                            <p class="form-row notes" id="order_comments_field"><label
-                                                    for="order_comments" class="">Optional Message</label><textarea
-                                                    name="order_comments" class="input-text " id="order_comments"
-                                                    placeholder="Notes about your order, e.g. special notes for delivery."
-                                                    rows="2" cols="5"></textarea></p>
-
-                                        </div> <!-- **woocommerce-shipping-fields - Ends** -->
-
-                                    </div> <!-- **col-2 - Ends** -->
-
-                                </div> <!-- **col2-set - Ends** -->
-
-                                <div class="dt-sc-margin50"></div>
-                                <h3 id="order_review_heading">Order Review &amp; Payment</h3>
-                                <div id="order_review">
-                                    <table class="shop_table cart">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-thumbnail">Arte</th>
-                                                <th class="product-name">Produto</th>
-                                                <th class="product-price">Preço</th>
-                                                <th class="product-quantity">Quantidade</th>
-                                                <th class="product-subtotal">Total</th>
-                                                <th class="product-remove">Remover</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class = "cart_table_item">
-                                                <!-- The thumbnail -->
-                                                <td class="product-thumbnail">
-                                                    <a href="shop-detail.html"><img src="images/fineart-1.jpg" style="width: 100px; height: 100px;" class="attachment-shop_thumbnail wp-post-image" alt="T_7_front" /></a>
-                                                </td>
-                    
-                                                <!-- Product Name -->
-                                                <td class="product-name">
-                                                    <h6><a href="shop-detail.html">Fineart 1</a></h6>
-                                                </td>
-                    
-                                                <!-- Product price -->
-                                                <td class="product-price">
-                                                    <span class="amount">R$ 150</span>
-                                                </td>
-                    
-                                                <!-- Quantity inputs -->
-                                                <td class="product-quantity">
-                                                    <div class="quantity">
-                                                        <input type="button" class="minus" value="-"/>
-                                                        <input type="number" name="quantity" step="1" value="1" min="1" title="Qty" class="input-text qty text" />
-                                                        <input type="button" class="plus" value="+"/>
-                                                    </div>			
-                                                </td>
-                    
-                                                <!-- Product subtotal -->
-                                                <td class="product-subtotal">
-                                                    <span class="amount">R$ 150</span>
-                                                </td>
-                                                
-                                                <!-- Remove from cart link -->
-                                                <td class="product-remove">
-                                                    <a href="#" class="remove" title="Remove this item">&times;</a>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-
-                                    <!-- **cart-collaterals - Starts** -->
-                                    <div class="cart-collaterals">
-                                        <div class="coupon">
-                                            <h3>frete</h3>
-                                            <form action="#" method="post">
-                                                <label for="coupon_code">Calcular frete</label> 
-                                                <input name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="CEP" />
-                                                <input type="submit" value="Calcular" name="calculate_shipping" class="button">
-                                            </form>                                
-                                        </div>
-                                        <div class="cart_totals">
-                                            <h3>Total no carrinho</h3>
-                                            <table>
-                                                <tbody>
-                                                
-                                                    <tr class="cart-subtotal">
-                                                        <th>Subtotal</th>
-                                                        <td><span class="amount">R$ 150</span></span></td>
-                                                    </tr>
-                                                    
-                                                    <tr class="shipping">
-                                                        <th>Frete</th>
-                                                        <td>R$ 25<input type="hidden" name="shipping_method" id="shipping_method" value="free_shipping" /></td>
-                                                    </tr>
-                                                    
-                                                    <tr class="total">
-                                                        <th>Total do pedido</th>
-                                                        <td><strong><span class="amount">R$ 175</span></span></strong></td>
-                                                    </tr>
-                                                
-                                                </tbody>
-                                            </table>
-                                        </div>                        	
-                                    </div> <!-- **cart-collaterals - Ends** -->
-                                    <!-- **payment - Starts** -->
-                                    <div id="payment">
-                                        <ul class="payment_methods methods">
-                                            <li class="payment_method_bacs">
-                                                <input id="payment_method_bacs" type="radio" class="input-radio"
-                                                    name="payment_method" value="bacs" checked='checked'
-                                                    data-order_button_text="" />
-                                                <label for="payment_method_bacs"><span></span>Pix
-                                                </label>
-                                                <div class="payment_box payment_method_bacs">
-                                                    <p>Make your payment directly into our bank account. Please use your
-                                                        Order ID as the payment reference. Your order won&#8217;t be
-                                                        shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </li>
-                                            <li class="payment_method_cheque">
-                                                <input id="payment_method_cheque" type="radio" class="input-radio"
-                                                    name="payment_method" value="cheque" data-order_button_text="" />
-                                                <label for="payment_method_cheque"><span></span>Cartão de crédito </label>
-                                                <div class="payment_box payment_method_cheque" style="display:none;">
-                                                    <p>Please send your cheque to Store Name, Store Street, Store Town,
-                                                        Store State / County, Store Postcode.</p>
-                                                </div>
-                                            </li>
-                                            <li class="payment_method_paypal">
-                                                <input id="payment_method_paypal" type="radio" class="input-radio"
-                                                    name="payment_method" value="paypal"
-                                                    data-order_button_text="Proceed to PayPal" />
-                                                <label for="payment_method_paypal"><span></span>PayPal <img
-                                                        src="images/paypal.png" alt="PayPal" /></label>
-                                                <div class="payment_box payment_method_paypal" style="display:none;">
-                                                    <p>Pay via PayPal; you can pay with your credit card if you
-                                                        don&#8217;t have a PayPal account</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-                                        <div class="form-row place-order">
-
-                                            <noscript>Since your browser does not support JavaScript, or it is disabled,
-                                                please ensure you click the <em>Update Totals</em> button before placing
-                                                your order. You may be charged more than the amount stated above if you
-                                                fail to do so.<br /><input type="submit" class="button alt"
-                                                    name="woocommerce_checkout_update_totals"
-                                                    value="Update totals" /></noscript>
-                                            <input type="hidden" name="_wpnonce" value="127d0e67e3" /><input
-                                                type="hidden" name="_wp_http_referer" value="" />
-                                            <input type="submit" class="button alt"
-                                                name="woocommerce_checkout_place_order" id="place_order"
-                                                value="Place order" data-value="Finalizar pedido" />
-
-                                        </div>
-
-                                        <div class="clear"></div>
-
-                                    </div> <!-- **payment - Ends** -->
-                                </div> <!-- **order_review - Ends** -->
-                            </form> <!-- **checkout - Ends** -->
-                        </div> <!-- **woocommerce - Ends** -->
-                    </div>
-                </section> <!-- **Primary - Ends** -->
+                    </div> <!-- **payment - Ends** -->
+                </div> <!-- **order_review - Ends** -->
+            </form> <!-- **checkout - Ends** -->
+        </div> <!-- **woocommerce - Ends** -->
+    </div>
+</section> <!-- **Primary - Ends** -->
 
 {% endblock main %}
