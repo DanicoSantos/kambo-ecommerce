@@ -4,7 +4,7 @@ from .models import Category, Product
 
 
 def home_page(request):
-    products = Product.objects.all()
+    products = Product.products.all()
     context = dict(products=products)
     return render(request, 'store/index.html', context)
 
