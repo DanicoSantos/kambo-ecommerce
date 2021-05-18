@@ -35,28 +35,28 @@
                 <ul class="cart-thumb-categories">
                     <!-- cart-thumb-categories starts Here -->
                     <li>
-                        <a href="#" class="product"><img src="images/fineart-1.jpg" alt="" title=""></a>
+                        <a href="#" class="product"><img src="{{ product.picture.url }}" alt="" title=""></a>
                         <div class="category-details">
                             <h6><a href="#"> Impressão </a> </h6>
                             <span> R$25 </span>
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="product"><img src="images/fineart-1.jpg" alt="" title=""></a>
+                        <a href="#" class="product"><img src="{{ product.picture.url }}" alt="" title=""></a>
                         <div class="category-details">
                             <h6><a href="#"> Foto </a> </h6>
                             <span> R$30 </span>
                         </div>
                     </li>
                     <li class="last">
-                        <a href="#" class="product"><img src="images/fineart-1.jpg" alt="" title=""></a>
+                        <a href="#" class="product"><img src="{{ product.picture.url }}" alt="" title=""></a>
                         <div class="category-details">
                             <h6><a href="#"> Pintura a óleo </a> </h6>
                             <span> R$28 </span>
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="product"><img src="images/fineart-1.jpg" alt="" title=""></a>
+                        <a href="#" class="product"><img src="{{ product.picture.url }}" alt="" title=""></a>
                         <div class="category-details">
                             <h6><a href="#"> Acrílico </a> </h6>
                             <span> R$45 </span>
@@ -66,11 +66,41 @@
 
                 </ul><!-- cart-thumb-categories Ends Here -->
 
-                <a class="dt-sc-button medium type2 with-icon" href="shop-cart.html"><i class="fa fa-cart-plus"> </i>
-                    <span> Adicionar ao carrinho </span> </a>
+                <div class="woocommerce">
+                <table class="shop_table cart">
+                    <thead>
+                        <tr>
+                            <th class="product-quantity">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cart_table_item">
+
+                            <!-- Quantity inputs -->
+                            <td class="product-quantity">
+                                <div class="quantity">
+                                    <input type="button" class="minus" value="-" />
+                                    <input type="number" id="quantity" name="quantity" step="1" value="1" min="1" title="Qty"
+                                        class="input-text qty text" />
+                                    <input type="button" class="plus" value="+" />
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+
+
+                <button class="dt-sc-button medium type2 with-icon" type="button" id="add-to-basket-button" 
+                value="{{product.id}}" href=""><i class="fa fa-cart-plus"> </i>
+                    <span> Adicionar ao carrinho </span> </button>
 
             </div>
         </div><!-- *cart-wrapper Ends here** -->
     </div>
 </section><!-- **Primary Ends Here** -->
+
+
+
 {% endblock main %}

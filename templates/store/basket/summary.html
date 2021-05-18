@@ -18,32 +18,36 @@
                             <th class="product-quantity">Quantidade</th>
                             <th class="product-subtotal">Total</th>
                             <th class="product-remove">Remover</th>
+                            <th class="product-remove">Atualizar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="cart_table_item">
+                        {% for item in basket %}
+                        {% with product=item.product %}
+                        <tr class="cart_table_item" id="product-{{product.id}}">
                             <!-- The thumbnail -->
                             <td class="product-thumbnail">
-                                <a href="shop-detail.html"><img src="images/fineart-1.jpg"
+                                <a href="{{ product.get_absolute_url }}"><img src="{{ product.picture.url }}"
                                         style="width: 100px; height: 100px;"
                                         class="attachment-shop_thumbnail wp-post-image" alt="T_7_front" /></a>
                             </td>
 
                             <!-- Product Name -->
                             <td class="product-name">
-                                <h6><a href="shop-detail.html">Fineart 1</a></h6>
+                                <h6><a href="shop-detail.html">{{ product.title }}</a></h6>
                             </td>
 
                             <!-- Product price -->
                             <td class="product-price">
-                                <span class="amount">R$ 150</span>
+                                <span class="amount">{{ product.price }}</span>
                             </td>
 
                             <!-- Quantity inputs -->
                             <td class="product-quantity">
                                 <div class="quantity">
                                     <input type="button" class="minus" value="-" />
-                                    <input type="number" name="quantity" step="1" value="1" min="1" title="Qty"
+                                    <input type="number" id="quantity-{{product.id}}" name="quantity-{{product.id}}"
+                                     step="1" value="{{item.quantity}}" min="1" title="Quantity"
                                         class="input-text qty text" />
                                     <input type="button" class="plus" value="+" />
                                 </div>
@@ -51,19 +55,22 @@
 
                             <!-- Product subtotal -->
                             <td class="product-subtotal">
-                                <span class="amount">R$ 150</span>
+                                <span class="amount">R$ {{ item.total_price }}</span>
                             </td>
 
                             <!-- Remove from cart link -->
                             <td class="product-remove">
-                                <a href="#" class="remove" title="Remove this item">&times;</a>
+                                <a href="#" class="btn btn-link remove" data-value="{{product.id}}">&times;</a>
                             </td>
+                            <td><a href="#" id="update-button" name="update_cart" data-value="{{product.id}}"><i class="fas fa-refresh"></i></button></td>
                         </tr>
+                        {% endwith %}
+                        {% endfor %}
 
                     </tbody>
                 </table>
-                <input type="submit" class="button" name="update_cart" value="Atualizar carrinho">
-                <input type="submit" class="button" name="continue" value="Continuar comprando">
+                
+                <a href="{% url 'store:shop' %}" class="button" name="continue">Continuar comprando</a>
             </form>
             <div class="cart-collaterals">
                 <div class="coupon">
@@ -81,7 +88,7 @@
 
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
-                                <td><span class="amount">R$ 150</span></span></td>
+                                <td><span class="amount">R$ {{ basket.get_total_price }}</span></span></td>
                             </tr>
 
                             <tr class="shipping">
@@ -107,3 +114,29 @@
 </section><!-- **Primary Ends Here** -->
 
 {% endblock main %}
+
+{% block extra_js %}
+<script>
+$(document).on('click', '.remove', function(event) {
+    event.preventDefault();
+    let self = $(this);
+    let productId = self.data('value')
+    $.ajax({
+        type: 'POST',
+        url: '{% url "basket:basket_delete" %}',
+        data: {
+            productid: productId,
+            productqty: $(`#quantity-${productId}`).data('value'),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'delete'
+        },
+        success: function(data) {
+            $(`#product-${productId}`).remove();
+        },
+        error: function(xhr, msg, err) {
+
+        }
+    });
+});
+</script>
+{% endblock extra_js %}

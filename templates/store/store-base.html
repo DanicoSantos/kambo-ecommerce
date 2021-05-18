@@ -9,13 +9,46 @@
         <div class="user-summary">
             <div class="account-links">
                 <a href="#">My Account</a>
-                <a href="#">Checkout</a>
+                <a href="{% url 'basket:basket_summary' %}">Checkout</a>
             </div>
             <div class="cart-count">
-                <a href="#">Shopping Bag: 0 items</a>
+                <a href="#">Shopping Bag: 
+                {% with total_qty=basket|length %}
+                {% if total_qty > 0 %}
+                <span id="basket-qty">{{ total_qty }}</span>
+                {% else %}
+                <span id="basket-qty">0</span>
+                {% endif %}
+                {% endwith %}
+                 items</a>
                 <a href="#">($0.00)</a>
             </div>
         </div>
     </div>
 </div><!-- *BreadCrumb Ends here** -->
 {% endblock breadcrumb %}
+
+{% block extra_js %}
+
+<script>
+$(document).on('click', '#add-to-basket-button', function(event) {
+    event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '{% url "basket:basket_add" %}',
+        data: {
+            productid: $('#add-to-basket-button').val(),
+            productqty: $('#quantity').val(),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'post'
+        },
+        success: function(data) {
+            $('#basket-qty').text(data.qty)
+        },
+        error: function(xhr, msg, err) {
+
+        }
+    });
+});
+</script>
+{% endblock extra_js %}
