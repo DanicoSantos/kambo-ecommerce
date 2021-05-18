@@ -9,10 +9,10 @@
         <div class="user-summary">
             <div class="account-links">
                 <a href="#">My Account</a>
-                <a href="{% url 'basket:basket_summary' %}">Checkout</a>
+                <a href="">Checkout</a>
             </div>
             <div class="cart-count">
-                <a href="#">Shopping Bag: 
+                <a href="{% url 'basket:basket_summary' %}">Shopping Bag: 
                 {% with total_qty=basket|length %}
                 {% if total_qty > 0 %}
                 <span id="basket-qty">{{ total_qty }}</span>

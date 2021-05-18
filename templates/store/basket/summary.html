@@ -46,7 +46,7 @@
                             <td class="product-quantity">
                                 <div class="quantity">
                                     <input type="button" class="minus" value="-" />
-                                    <input type="number" id="quantity-{{product.id}}" name="quantity-{{product.id}}"
+                                    <input type="number" class="qty" id="quantity" data-product-id="{{product.id}}" name="quantity"
                                      step="1" value="{{item.quantity}}" min="1" title="Quantity"
                                         class="input-text qty text" />
                                     <input type="button" class="plus" value="+" />
@@ -60,9 +60,9 @@
 
                             <!-- Remove from cart link -->
                             <td class="product-remove">
-                                <a href="#" class="btn btn-link remove" data-value="{{product.id}}">&times;</a>
+                                <a href="#" class="remove" data-action="delete" data-value="{{product.id}}">&times;</a>
                             </td>
-                            <td><a href="#" id="update-button" name="update_cart" data-value="{{product.id}}"><i class="fas fa-refresh"></i></button></td>
+                            <td class="product-remove"><a href="#" data-action="update" id="update-button" name="update_cart" data-value="{{product.id}}"><i class="fa fa-refresh"></i></button></td>
                         </tr>
                         {% endwith %}
                         {% endfor %}
@@ -88,7 +88,7 @@
 
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
-                                <td><span class="amount">R$ {{ basket.get_total_price }}</span></span></td>
+                                <td><span class="amount">R$ <span id="total-price">{{basket.get_total_price}}</span></span></span></td>
                             </tr>
 
                             <tr class="shipping">
@@ -117,7 +117,7 @@
 
 {% block extra_js %}
 <script>
-$(document).on('click', '.remove', function(event) {
+$(document).on('click', 'a[data-action="delete"]', function(event) {
     event.preventDefault();
     let self = $(this);
     let productId = self.data('value')
@@ -126,12 +126,37 @@ $(document).on('click', '.remove', function(event) {
         url: '{% url "basket:basket_delete" %}',
         data: {
             productid: productId,
-            productqty: $(`#quantity-${productId}`).data('value'),
+            productqty: $(`.qty[data-product-id="${productId}"]`).val(),
             csrfmiddlewaretoken: "{{csrf_token}}",
             action: 'delete'
         },
         success: function(data) {
             $(`#product-${productId}`).remove();
+            $('#total-price').text(`${data.subtotal}`);
+            $('#basket-qty').text(`${data.quantity}`);
+        },
+        error: function(xhr, msg, err) {
+
+        }
+    });
+});
+
+$(document).on('click', 'a[data-action="update"]', function(event) {
+    event.preventDefault();
+    let self = $(this);
+    let productId = self.data('value')
+    $.ajax({
+        type: 'POST',
+        url: '{% url "basket:basket_update" %}',
+        data: {
+            productid: productId,
+            productqty: $(`.qty[data-product-id="${productId}"]`).val(),
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action: 'update'
+        },
+        success: function(data) {
+            $('#total-price').text(`${data.subtotal}`);
+            $('#basket-qty').text(`${data.quantity}`);
         },
         error: function(xhr, msg, err) {
 
