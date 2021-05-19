@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from .forms import RegistrationForm
 
 def account_register(request):
-    if request.user.is_authenticated:
-        return redirect('/')
+    # if request.user.is_authenticated:
+    #     return redirect('/')
     
     if request.method == 'POST':
         registerForm = RegistrationForm(request.POST)
@@ -25,6 +25,6 @@ def account_register(request):
                 'token': account_activation_token.make_token(user),                
             })
             user.email_user(subject=subject, message=message)
-        else:
-            registerForm = RegistrationForm()
-            return render(request, 'account/registration/register.html', {'form': registerForm})
+    else:
+        registerForm = RegistrationForm()
+    return render(request, 'account/registration/register.html', {'form': registerForm})
