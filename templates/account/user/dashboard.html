@@ -1,0 +1,18 @@
+{% extends '../../store/store-base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock extra_css %}
+
+{% block main %}
+<section class="content-full-width" id="primary">
+<h3>Dashboard</h3>
+<div class="orders">
+<p>Manage your <b>orders</b> and personal details</p> 
+<a href="">Change Details</a>
+</div>
+</section>
+{% endblock main %}

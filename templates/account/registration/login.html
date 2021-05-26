@@ -1,0 +1,102 @@
+{% extends '../../store/store-base.html' %} 
+{% load static %} 
+
+{% block title %}Login{% endblock title %} 
+
+{% block main %}
+
+<section id="primary" class="content-full-width">
+  <div class="container">
+    <!-- **woocommerce - Starts** -->
+    <div class="woocommerce">
+      <!-- **checkout - Starts** -->
+      <form
+        method="post"
+        class="checkout"
+        action="{% url 'account:login' %}"
+      >
+        {% csrf_token %}
+        <div class="container">
+          <div class="row">
+            <div class="column dt-sc-one-third fadeInDown"></div>
+            <!-- **col2-set - Starts** -->
+            <div
+              class="column dt-sc-one-third fadeInDown"
+              id="customer_details"
+            >
+              <!-- **col-1 - Starts** -->
+              <!-- **woocommerce-billing-fields - Starts** -->
+              <div class="woocommerce-billing-fields">
+                <h3>Login</h3>
+                {% if form.errors %}
+                <div class="alert alert-primary">
+                  Username or Password not correct
+                </div>
+
+                {% endif %}
+
+                <p class="form-row form-row-wide validate-required" id="">
+                  <label for="billing_first_name" class=""
+                    >{{ form.username.label }}*</label
+                  >
+                  {% comment %}
+                  <input
+                    type="text"
+                    class="input-text"
+                    name="billing_first_name"
+                    id="billing_first_name"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  {% endcomment %} {{ form.username }}
+                </p>
+
+                <p class="form-row form-row-wide validate-required" id="">
+                  <label for="billing_last_name" class=""
+                    >{{ form.password.label }}*</label
+                  >
+                  {% comment %}
+                  <input
+                    type="text"
+                    class="input-text"
+                    name="billing_last_name"
+                    id="billing_last_name"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  {% endcomment %} {{ form.password }}
+                </p>
+
+                <div class="clear"></div>
+                <input type="hidden" name="next" value="{{ next }}">
+
+                <button class="dt-sc-button small type2" type="submit">
+                  Login
+                </button>
+                <p class="text-center">
+                  <a href="{% url 'account:register' %}"
+                    >Create an account</a
+                  >
+                </p>
+              </div>
+              <!-- **woocommerce-billing-fields - Ends** -->
+            </div>
+            <!-- **col2-set - Ends** -->
+            <div class="column dt-sc-one-third fadeInDown">
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="dt-sc-margin50"></div>
+      </form>
+      <!-- **checkout - Ends** -->
+    </div>
+    <!-- **woocommerce - Ends** -->
+  </div>
+</section>
+<!-- **Primary - Ends** -->
+
+{% endblock main %}

@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import fields
 from .models import UserBase
+from django.contrib.auth.forms import (AuthenticationForm)
 
 
 class RegistrationForm(forms.ModelForm):
@@ -35,3 +36,18 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError(
                 'Please use another Email, that is already taken')
         return email
+
+
+class UserLoginForm(AuthenticationForm):
+
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Username', 'id': 'login-username'}
+    ), label='Email address')
+
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'placeholder': 'Password',
+            'id': 'login-password'
+        }
+    ), label='Password')
+
